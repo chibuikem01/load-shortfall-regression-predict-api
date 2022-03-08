@@ -58,7 +58,20 @@ def _preprocess_data(data):
     # ---------------------------------------------------------------
 
     # ----------- Replace this code with your own preprocessing steps --------
-    predict_vector = feature_vector_df[['Madrid_wind_speed','Bilbao_rain_1h','Valencia_wind_speed']]
+    feature_vector_df['time']= pd.to_datetime(feature_vector_df['time'])
+    feature_vector_df['month']=feature_vector_df.time.dt.month
+    feature_vector_df['day']=feature_vector_df.time.dt.day
+    feature_vector_df['hour']=feature_vector_df.time.dt.hour
+    predict_vector = feature_vector_df[['month', 'Madrid_temp', 'Barcelona_temp', 'Bilbao_temp',
+       'Valencia_temp', 'Seville_temp', 'Bilbao_weather_id', 'hour',
+       'Seville_temp_max', 'Madrid_pressure', 'day', 'Barcelona_weather_id',
+       'Seville_weather_id', 'Valencia_humidity', 'Bilbao_pressure',
+       'Madrid_weather_id', 'Valencia_snow_3h', 'Barcelona_rain_3h',
+       'Bilbao_snow_3h', 'Seville_rain_3h', 'Barcelona_pressure',
+       'Seville_wind_speed', 'Bilbao_wind_speed', 'Madrid_clouds_all',
+       'Seville_clouds_all', 'Barcelona_wind_speed', 'Barcelona_wind_deg',
+       'Bilbao_wind_deg', 'Bilbao_clouds_all', 'Valencia_wind_speed',
+       'Madrid_wind_speed', 'Seville_humidity']]
     # ------------------------------------------------------------------------
 
     return predict_vector
